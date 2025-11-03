@@ -1,22 +1,29 @@
-// server.js
 
+
+
+
+
+
+// server.js
 const express = require("express");
+const app = express();
 const cors = require("cors");
 
-const app = express();
-const PORT = 3000;
-
-// ✅ Middlewares
+// Middleware
 app.use(cors());
-app.use(express.json()); // to parse JSON bodies
+app.use(express.json());
 
-// ✅ Import routes
-const authRoutes = require("./routers/auth"); // <--- this is the line you're asking about
+// Import Routes
+const authRouter = require("./routes/auth"); // ✅ Make sure path is correct
 
-// ✅ Mount routes
-app.use("/api/auth", authRoutes); // routes like /api/auth/reset-password
+// Use Routes
+app.use("/api/auth", authRouter);
 
-// ✅ Start the server
-app.listen(PORT, () => {
-  console.log(`✅ Server is running at http://localhost:${PORT}`);
+// Default Route
+app.get("/", (req, res) => {
+  res.send("Server is running ✅");
 });
+
+// Start Server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

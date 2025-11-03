@@ -1,3 +1,4 @@
+
 // routers/auth.js
 const express = require("express");
 const router = express.Router();
@@ -12,6 +13,7 @@ const users = [
 router.post("/reset-password", (req, res) => {
   const { email } = req.body;
 
+  // Validation
   if (!email) {
     return res.status(400).json({ message: "Email is required" });
   }
