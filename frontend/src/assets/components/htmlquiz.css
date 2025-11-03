@@ -1,0 +1,187 @@
+.quiz-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+}
+
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timer {
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.question-text {
+  font-size: 1.2rem;
+  margin: 20px 0;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-button {
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.option-button:hover {
+  background: #eee;
+}
+
+.option-selected {
+  background-color: #dceeff;
+  border-color: #3498db;
+}
+
+.nav-button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.nav-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.result-container {
+  text-align: center;
+}
+
+.result-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.result-score {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.review-section {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.review-question {
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+/* Updated styles for review */
+.review-question-text {
+  color: #555;
+  font-weight: bold;
+}
+
+.user-answer span,
+.correct-answer span {
+  display: inline-block;
+  width: 60%;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.correct {
+  color: green;
+  font-weight: bold;
+}
+
+.incorrect {
+  color: red;
+  font-weight: bold;
+}
+
+.retry-button {
+  margin-top: 30px;
+  padding: 10px 20px;
+  background: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.question-text {
+  color: black;
+}
+.review-question h4 {
+  color: black;
+}
+
+.review-question p {
+  color: black;
+}
+
+.option-button {
+  color: black;
+}
+.quiz-container {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+}
+
+.question-text {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-button {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #999;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.option-selected {
+  background-color: #d9edf7;
+}
+
+.nav-button,
+.retry-button {
+  margin: 10px 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.result-container {
+  text-align: center;
+}
+
+.review-question {
+  text-align: left;
+  margin-top: 15px;
+}
+h2{
+  color: black;
+}
+p{
+  color: black;
+}
