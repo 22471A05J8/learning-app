@@ -1,31 +1,57 @@
-
-// routers/auth.js
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const User = require("../models/User");
+require("dotenv").config();
 
-// Dummy user database
-const users = [
-  { id: 1, email: "test@example.com", password: "123456" },
-  { id: 2, email: "harini@gmail.com", password: "harini@123" },
-];
+// REGISTER
+router.post("/register", async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-// Route: POST /api/auth/reset-password
-router.post("/reset-password", (req, res) => {
-  const { email } = req.body;
+    // Check existing user
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists" });
+    }
 
-  // Validation
-  if (!email) {
-    return res.status(400).json({ message: "Email is required" });
+    // Create new user
+    const user = new User({ email, password });
+    await user.save();
+
+    res.status(201).json({ message: "User registered successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
   }
+});
 
-  const user = users.find((u) => u.email === email);
+// LOGIN
+router.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-  if (!user) {
-    return res.status(404).json({ message: "User not found" });
+    // Check if user exists
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: "Invalid email or password" });
+    }
+
+    // Check password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid email or password" });
+    }
+
+    // Create JWT token
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
+
+    res.json({ message: "Login successful", token });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
   }
-
-  console.log(`✅ Reset email sent to ${email}`);
-  res.status(200).json({ message: "Reset link sent to your email" });
 });
 
 module.exports = router;
